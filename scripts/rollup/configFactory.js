@@ -1,5 +1,4 @@
 const resolve = require('@rollup/plugin-node-resolve');
-const commonjs = require('@rollup/plugin-commonjs');
 const { babel } = require('@rollup/plugin-babel');
 const path = require('path');
 const fs = require('fs');
@@ -19,13 +18,10 @@ const rollupConfigFactory = (pkgName, externals = []) => {
 
   const allLibFiles = allFilesAndFolders.filter((file) => fs.statSync(file).isFile());
 
-  console.log(require('@babel/runtime/package.json').version);
-
   const plugins = [
     resolve({
       extensions: ['.mjs', '.js', '.json', '.node', '.jsx', '.ts', '.tsx']
     }),
-    commonjs(),
     json(),
     babel({
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
